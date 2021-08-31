@@ -46,7 +46,7 @@ $(function() {
     var src = $('.yt-video').children('iframe').attr('src');
 
     // when object with class open-popup is clicked...
-    $('.grn-btn').click(function(e) {
+    $('.reviews-slider .owl-item:not(.active)+.active .image').click(function(e) {
         e.preventDefault();
         // change the src value of the video
         $('.yt-video').children('iframe').attr('src', src);
@@ -292,11 +292,15 @@ $(function() {
         }
 
     })
+
     if ($('.reviews-slider').length > 0) {
         $(".reviews-slider").owlCarousel({
             loop: true,
             nav: true,
             dots: false,
+            animationDuration: 0.8,
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
             responsive: {
                 0: {
                     items: 1
@@ -337,11 +341,11 @@ $(function() {
         });
     }
 
-    $('.grn-btn').on('click', function(){
+    $('.reviews-slider .owl-item:not(.active)+.active .image').on('click', function(){
         $('.videos-popup').addClass('open');
-        $('body').addClass('fixed');
-
+        $('.videos-popup').addClass('fixed');
     })
+
     $('.videos-popup .close').on('click', function(){
         $('.videos-popup').removeClass('open');
         $('body').removeClass('fixed');
