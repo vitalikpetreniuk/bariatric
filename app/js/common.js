@@ -1,4 +1,5 @@
 $(function() {
+
     $('a[href*="#"]')
         // Remove links that don't actually link to anything
         .not('[href="#"]')
@@ -46,7 +47,7 @@ $(function() {
     var src = $('.yt-video').children('iframe').attr('src');
 
     // when object with class open-popup is clicked...
-    $('.reviews-slider .owl-item:not(.active)+.active .image').click(function(e) {
+    $('.reviews-slider .image').click(function(e) {
         e.preventDefault();
         // change the src value of the video
         $('.yt-video').children('iframe').attr('src', src);
@@ -332,16 +333,16 @@ $(function() {
             }
         });
     }
-    if ($('.videos-slider').length > 0) {
+    /*if ($('.videos-slider').length > 0) {
         $(".videos-slider").owlCarousel({
             loop: true,
             nav: true,
             dots: false,
             items: 1
         });
-    }
+    }*/
 
-    $('.reviews-slider .owl-item:not(.active)+.active .image').on('click', function(){
+    $('.reviews-slider .owl-item .image').on('click', function(){
         $('.videos-popup').addClass('open');
         $('.videos-popup').addClass('fixed');
     })
@@ -400,7 +401,6 @@ $(function() {
         });
     });
     $('.modal .close').on('click', function (e){
-
         $(this).closest('.modal').hide()
         $('body').removeClass('fixed')
     })
@@ -412,7 +412,20 @@ $(function() {
         e.preventDefault()
         $('body').addClass('fixed')
     })
-
+    $('body').on('mouseenter', '.map svg .clickable', function(){
+        let hovered_state = $(this).attr('class').split('clickable ')[1];
+        if(hovered_state !== undefined)
+        {
+            $('body').addClass('state-'+hovered_state);
+            $('.clinic-plate').css('display' , 'flex')
+        }
+        // $('.clinic-plate .image').html('<img src="'+$('.two-img img:nth-child(2)').attr('src')+'" alt="">');
+        // $('.clinic-plate .text').html(hovered_state+' information');
+    })
+    $('body').on('mouseleave', '.map svg .clickable', function(){
+        $('body').removeClass('state-tennessee state-missisipi state-alabama state-georgia state-florida state-south-carolina state-north-carolina state-virginia state-kentucky' );
+        $('.clinic-plate').hide()
+    })
 
 });
 
