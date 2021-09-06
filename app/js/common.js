@@ -343,13 +343,14 @@ $(function() {
     }*/
 
     $('.reviews-slider .owl-item .image').on('click', function(){
-        $('.videos-popup').addClass('open');
+        var popup_id = $('#' + $(this).attr("rel"))
+        $(popup_id).addClass('open');
         $('.videos-popup').addClass('fixed');
     })
 
     $('.videos-popup .close').on('click', function(){
         $('.videos-popup').removeClass('open');
-        $('body').removeClass('fixed');
+        $('.videos-popup').removeClass('fixed');
     })
     var owl = $(".reviews-slider");
     $(".owl-next-new").click(function(){
